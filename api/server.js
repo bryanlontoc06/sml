@@ -13,22 +13,14 @@ app.use(logger);
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.json([
-    {
-      "id":"1",
-      "title":"Book Review: The Bear & The Nightingale ABC"
-    },
-    {
-      "id":"2",
-      "title":"Game Review: Pokemon Brillian Diamond"
-    },
-    {
-      "id":"3",
-      "title":"Show Review: Alice in Borderland"
-    }
-  ])
-})
+// built-in middleware to handle urlencoded form data
+app.use(express.urlencoded({ extended: false }));
+
+// built-in middleware for json
+app.use(express.json());
+
+//routes
+app.use('/register', require('./routes/register'));
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
