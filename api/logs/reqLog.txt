@@ -21,3 +21,4 @@
 20230505	14:42:53	86f9b931-7055-4def-91b4-419faafd85ca	POST	undefined	/auth
 20230505	14:42:55	d532da9d-a05e-42ac-86f6-902257eebeda	GET	undefined	/refresh
 20230505	14:43:41	60baeeb8-b5f3-4906-a68f-8f2cf430b51c	GET	undefined	/refresh
+20230505	14:48:07	99b5f73f-6775-48be-91f0-bf7eb7ad77bb	POST	undefined	/auth
