@@ -6,6 +6,8 @@ const corsOptions = require('./config/corsOptions');
 const { logger } = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
 const verifyJWT = require('./middleware/verifyJWT');
+const ROLES_LIST = require('./config/roles_list');
+const verifyRoles = require('./middleware/verifyRoles');
 const cookieParser = require('cookie-parser');
 const credentials = require('./middleware/credentials');
 const mongoose = require('mongoose');
@@ -37,6 +39,8 @@ app.use('/logout', require('./routes/logout'));
 
 app.use(verifyJWT);
 app.use('/users', require('./routes/api/users'));
+app.use(verifyRoles(ROLES_LIST.Admin));
+app.use('/status', require('./routes/api/status'));
 
 app.use(errorHandler);
 
