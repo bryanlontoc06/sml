@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const employeeSchema = new Schema({
     employeeID: {
-        type: String,
-        required: true,
+        type: String
     },
     firstname: {
         type: String,
@@ -21,16 +20,17 @@ const employeeSchema = new Schema({
         type: Date
     },
     birthDate: {
-        type: Date
+        type: Date,
+        required: true
     },
     phoneNumber: {
         type: String
     },
-    status: [{
+    status: {
         type: mongoose.Schema.Types.ObjectId,
             ref: 'Status',
             required: true
-    }],
+    },
     image: {
         type: String
     }
