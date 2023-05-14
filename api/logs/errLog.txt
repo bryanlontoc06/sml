@@ -2,3 +2,5 @@
 20230511	18:01:37	3a65d194-dd43-44a8-bbc9-69157033d3c0	ReferenceError: result is not defined
 20230511	18:05:57	a608e257-73a6-4ea6-a2eb-23e2699169c3	ReferenceError: conso is not defined
 20230511	18:05:58	67dfb67e-92cc-4353-8b92-98f181518898	ReferenceError: conso is not defined
+20230514	15:01:12	06e55f3b-5bf4-4d45-b3da-bb02bf1a38d1	SyntaxError: Unexpected token
+ in JSON at position 41528
