@@ -9,6 +9,7 @@ Stacks Used:
 - Docker
 - Express
 - MongoDB
+- Cloudinary
 
 An API that monitors the status of the employee, add, update and delete an employee and employee status. This API has a middleware that an account is needed or should be registered in order to have an access on the APIs.
 
