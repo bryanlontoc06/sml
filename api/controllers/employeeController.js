@@ -4,9 +4,21 @@ const uploadImage = require('../config/uploadImage');
 const moment = require('moment');
 
 const getAllEmployee = async(req, res) => {
-    const employee = await Employee.find().populate('status');
-    if (!employee) return res.status(204).json({ 'message': 'No employee found' });
-    res.status(200).json(employee);
+    //  Sample
+    //  http://localhost:3500/employee?page=1&limit=2
+    const options = {
+        lean:     true,
+        populate : 'status'
+    };
+
+    if (req.query.page && req.query.limit) {
+        const result = await Employee.paginate({}, options, { page: req.query.page, limit: req.query.limit });
+        res.status(200).json(result);
+    } else {
+        const employee = await Employee.find().populate('status');
+        if (!employee) return res.status(204).json({ 'message': 'No employee found' });
+        res.status(200).json(employee);
+    }
 }
 
 const createNewEmployee = async (req, res) => {

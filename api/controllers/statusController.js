@@ -1,9 +1,16 @@
 const Status = require('../model/Status');
 
 const getAllStatus = async (req, res) => {
-    const status = await Status.find();
-    if (!status) return res.status(204).json({ 'message': 'No status found' });
-    res.status(200).json(status);
+    //  Sample
+    //  http://localhost:3500/status?page=1&limit=2
+    if (req.query.page && req.query.limit) {
+        const result = await Status.paginate({}, { page: req.query.page, limit: req.query.limit });
+        res.status(200).json(result);
+    } else {
+        const status = await Status.find();
+        if (!status) return res.status(204).json({ 'message': 'No status found' });
+        res.status(200).json(status);
+    }
 }
 
 const createNewStatus = async (req, res) => {

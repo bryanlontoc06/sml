@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const statusSchema = new Schema({
     name: {
         type: String,
@@ -8,4 +10,5 @@ const statusSchema = new Schema({
     }
 }, { timestamps: true });
 
+statusSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Status', statusSchema);

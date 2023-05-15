@@ -2,9 +2,16 @@ const User = require('../model/User');
 const ROLES_LIST = require('../config/roles_list');
 
 const getAllUsers = async (req, res, user) => {
-    const users = await User.find();
-    if (!users) return res.status(204).json({ 'message': 'No users found' });
-    res.status(200).json(users);
+    //  Sample
+    //  http://localhost:3500/users?page=1&limit=2
+    if (req.query.page && req.query.limit) {
+        const result = await User.paginate({}, { page: req.query.page, limit: req.query.limit });
+        res.status(200).json(result);
+    } else {
+        const users = await User.find();
+        if (!users) return res.status(204).json({ 'message': 'No users found' });
+        res.status(200).json(users);
+    }
 }
 
 const updateUser = async (req, res) => {
