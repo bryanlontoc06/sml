@@ -1,6 +1,6 @@
 
 # Medical Laboratory Clinic Management (Employee and Lab Test Procedures - w/ Price Lists) API
-## w/ Patient Lab Test History
+### & Patient Lab Test History
 #### with User Roles and User Registration
 
 
@@ -60,12 +60,14 @@ Representing Patients
 Representing LabTests
 - name: String
 - description: String
-- price: String
+- price: Number
+- discountedPrice: Number
+- prevPrice: Number
 
 Representing Promos
 - name: String
 - description: String
-- price: String
+- price: Number
 - requirements (Array): String
 - startDate: Date
 - endDate: Date
