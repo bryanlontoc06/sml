@@ -1,8 +1,7 @@
 
-# Medical Laboratory Clinic Management (Employee and Lab Test Procedures - w/ Price Lists) API
-### & Patient Lab Test History
+# Medical Laboratory Clinic Management  API
 #### with User Roles and User Registration
-
+- Employee and Lab Test Procedures - w/ Price Lists & Patient Lab Test History
 
 NOTE: PROJECT IN PROGRESS (planning to 
 improve this project into a medical laboratory clinic use, by adding laboratory tests with price lists, patients record with lab test procedures and its prices.
