@@ -42,6 +42,7 @@ app.use('/users', require('./routes/api/users'));
 app.use('/employee', require('./routes/api/employee'));
 app.use(verifyRoles(ROLES_LIST.Admin));
 app.use('/status', require('./routes/api/status'));
+app.use('/lab-test', require('./routes/api/labtest'));
 
 app.use(errorHandler);
 

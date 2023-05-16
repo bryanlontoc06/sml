@@ -1,6 +1,7 @@
 const Employee = require('../model/Employee');
 const Status = require('../model/Status');
 const uploadImage = require('../config/uploadImage');
+const toTitleCase = require('../config/toTitleCase');
 const moment = require('moment');
 
 const getAllEmployee = async(req, res) => {
@@ -38,12 +39,8 @@ const createNewEmployee = async (req, res) => {
     /* This code is checking if there is already an employee with the same first name and last name as
     the one being created or updated. If there is a duplicate, it sends a 409 status code indicating
     a conflict. */
-    const duplicateFirstname = await Employee.findOne({ firstname: fname }).exec();
-    const duplicateLastname = await Employee.findOne({ lastname: lname }).exec();
-    if (duplicateFirstname !== null &&
-        duplicateLastname !== null &&
-        (duplicateFirstname.firstname.toLowerCase() === fname.toLowerCase()) &&
-        (duplicateLastname.lastname.toLowerCase() === lname.toLowerCase())) {
+    const duplicateName = await Employee.findOne({ firstname: toTitleCase(fname), lastname: toTitleCase(lname)}).exec();
+    if (duplicateName) {
         return res.sendStatus(409); //Conflict
     }
 
@@ -74,9 +71,9 @@ const createNewEmployee = async (req, res) => {
     try {
         const result = await Employee.create({
             employeeID: `${moment(birthDate).format("YYMMDD")}-${employeeCount}`,
-            firstname: fname,
-            lastname: lname,
-            jobTitle,
+            firstname: toTitleCase(fname),
+            lastname: toTitleCase(lname),
+            jobTitle: toTitleCase(jobTitle),
             dateHired,
             birthDate,
             phoneNumber,
@@ -122,7 +119,7 @@ const updateEmployee = async (req, res) => {
     `fname` value passed in the request body and the employee's `lastname` property matches the
     `lname` value passed in the request body. The resulting array of boolean values is assigned to
     the `duplicateName` variable. */
-    const duplicateName = otherEmployees.map((emp) => {return (emp.firstname === fname) && (emp.lastname === lname) })
+    const duplicateName = otherEmployees.map((emp) => {return (emp.firstname === toTitleCase(fname)) && (emp.lastname === toTitleCase(lname)) })
 
     if (status) {
         const statusID = await Status.findOne({ name: status }).exec();
@@ -147,9 +144,9 @@ const updateEmployee = async (req, res) => {
         phoneNumber ||
         status ||
         image) {
-        employee.firstname = fname;
-        employee.lastname = lname;
-        employee.jobTitle = jobTitle;
+        employee.firstname = toTitleCase(fname);
+        employee.lastname = toTitleCase(lname);
+        employee.jobTitle = toTitleCase(jobTitle);
         employee.dateHired = dateHired;
         employee.birthDate = birthDate;
         employee.phoneNumber = phoneNumber;

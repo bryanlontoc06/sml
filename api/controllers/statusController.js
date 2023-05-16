@@ -1,4 +1,5 @@
 const Status = require('../model/Status');
+const toTitleCase = require('../config/toTitleCase');
 
 const getAllStatus = async (req, res) => {
     //  Sample
@@ -18,12 +19,12 @@ const createNewStatus = async (req, res) => {
         return res.status(400).json({ 'message': 'Status name required' });
     }
 
-    const duplicate = await Status.findOne({ name: req?.body?.name.toLowerCase() }).exec();
+    const duplicate = await Status.findOne({ name: toTitleCase(req?.body?.name) }).exec();
     if (duplicate) return res.sendStatus(409); //Conflict
 
     try {
         const result = await Status.create({
-            name: req.body.name
+            name: toTitleCase(req.body.name)
         });
 
         res.status(201).json(result);
@@ -41,11 +42,16 @@ const updateStatus = async (req, res) => {
     if (!status) {
         return res.status(204).json({ "message": `No status matches ID ${req.body.id}.` });
     }
-    const duplicate = await Status.findOne({ name: req?.body?.name.toLowerCase() }).exec();
-    if (duplicate) return res.sendStatus(409); //Conflict
-    if (req?.body?.name) status.name = req.body.name;
-    const result = await status.save();
-    res.status(200).json(result);
+    const otherStatus = await Status.find({ _id: {$ne: req.body.id}});
+    const duplicate = otherStatus.map((status) => {return status.name === toTitleCase(req?.body?.name)})
+    if (req?.body?.name) status.name = toTitleCase(req.body.name);
+
+    if (!duplicate.includes(true)) {
+        const result = await status.save();
+        res.status(200).json(result);
+    } else {
+        return res.sendStatus(409); //Conflict
+    }
 }
 
 const deleteStatus = async (req, res) => {
