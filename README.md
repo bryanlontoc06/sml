@@ -16,11 +16,14 @@ Stacks Used:
 
 
 Definition:
-- Users has 3 roles (User [default], Editor, Admin)
+- Users Registration (has 3 roles (User [default], Editor, Admin))
+- User Profile Management
 - Users can only view employee details
-- Editors can only update empoyee details
+- Editors can only update employee details
 - Admins have all the privileges as well as deleting the employees
 - Editor can set the employment status (model) of an employee
+- Only Admins can manage Laboratory Tests and Promos
+- Users can manage Patients
 
 
 Models:
