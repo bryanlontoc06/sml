@@ -63,6 +63,7 @@ Representing Patients
 Representing LabTests
 - name: String
 - description: String
+- requirements (Array): String
 - price: Number
 - discountedPrice: Number
 - prevPrice: Number
