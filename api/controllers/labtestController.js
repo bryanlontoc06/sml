@@ -26,9 +26,11 @@ const createNewLabTest = async (req, res) => {
         const result = await LabTest.create({
             name: toTitleCase(req.body.name),
             description: req.body.description,
+            requirements: req.body.requirements,
             price: req.body.price,
             discountedPrice: req.body.discountedPrice,
-            prevPrice: req.body.prevPrice
+            prevPrice: req.body.prevPrice,
+            discountPercentage: req.body.discountPercentage
         });
 
         res.status(201).json(result);
@@ -50,14 +52,18 @@ const updateLabTest = async (req, res) => {
     const duplicate = otherLabTest.map((status) => {return status.name === toTitleCase(req?.body?.name)})
     if (req?.body?.name ||
         req?.body?.description ||
+        req.body.requirements ||
         req?.body?.price ||
         req?.body?.discountedPrice ||
-        req?.body?.prevPrice){
+        req?.body?.prevPrice ||
+        req.body.discountPercentage){
         labtest.name = toTitleCase(req.body.name)
         labtest.description = req.body.description
+        labtest.requirements = req.body.requirements
         labtest.price = req.body.price
         labtest.discountedPrice = req.body.discountedPrice
         labtest.prevPrice = req.body.prevPrice
+        labtest.discountPercentage = req.body.discountPercentage
     };
     if (!duplicate.includes(true)) {
         const result = await labtest.save();

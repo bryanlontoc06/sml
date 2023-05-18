@@ -40,6 +40,7 @@ app.use('/logout', require('./routes/logout'));
 app.use(verifyJWT);
 app.use('/users', require('./routes/api/users'));
 app.use('/employee', require('./routes/api/employee'));
+app.use('/patient', require('./routes/api/patient'));
 app.use(verifyRoles(ROLES_LIST.Admin));
 app.use('/status', require('./routes/api/status'));
 app.use('/lab-test', require('./routes/api/labtest'));

@@ -11,6 +11,9 @@ const labtestSchema = new Schema({
     description: {
         type: String
     },
+    requirements: [{
+        type: String
+    }],
     price: {
         type: Number,
         required: true
@@ -19,6 +22,9 @@ const labtestSchema = new Schema({
         type: Number
     },
     prevPrice: {
+        type: Number
+    },
+    discountPercentage: {
         type: Number
     }
 }, { timestamps: true });

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const mongoosePaginate = require('mongoose-paginate-v2');
+
 const patientSchema = new Schema({
     patientNo: {
         type: String
@@ -29,13 +31,14 @@ const patientSchema = new Schema({
     age: {
         type: Number
     },
-    records: {
+    records: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'LabTest',
-    },
+    }],
     remarks: {
         type: String
     }
 }, { timestamps: true });
 
+patientSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Patient', patientSchema);
