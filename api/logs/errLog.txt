@@ -52,3 +52,4 @@
 20230517	14:27:27	a4c64ed1-21e4-4136-82f7-e176165440b1	SyntaxError: Unexpected number in JSON at position 116
 20230517	14:27:27	f02da92c-fc87-4b45-bf2c-cb91935dd0cc	SyntaxError: Unexpected number in JSON at position 116
 20230517	14:27:28	32c55216-9eef-4bba-b07c-cec8190364b5	SyntaxError: Unexpected number in JSON at position 116
+20230519	02:44:53	5d3a3433-d22d-4f29-ad3d-cdcc6f810136	ReferenceError: token is not defined
