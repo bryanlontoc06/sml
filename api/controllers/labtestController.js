@@ -49,7 +49,7 @@ const updateLabTest = async (req, res) => {
         return res.status(204).json({ "message": `No laboratory test matches ID ${req.body.id}.` });
     }
     const otherLabTest = await LabTest.find({ _id: {$ne: req.body.id}});
-    const duplicate = otherLabTest.map((status) => {return status.name === toTitleCase(req?.body?.name)})
+    const duplicate = otherLabTest.map((labtest) => {return labtest.name === toTitleCase(req?.body?.name)})
     if (req?.body?.name ||
         req?.body?.description ||
         req.body.requirements ||

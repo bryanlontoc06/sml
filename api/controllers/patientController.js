@@ -78,7 +78,7 @@ const createNewPatient = async (req, res) => {
         } else if (birthSpan.year < 2) {
           return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's ' : ' ') + birthSpan.month + ' month' + (birthSpan.month > 1 ? 's ' : '')
         } else {
-          return birthSpan.year
+          return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's' : '')
         }
     }
 
@@ -88,6 +88,8 @@ const createNewPatient = async (req, res) => {
     // moment([yyyy, mm, dd])
     let birth = moment([year, month, day])
 
+    const currentAge = displayAge(birth, moment())
+
     try {
         const result = await Patient.create({
             patientNo: `${moment(birthDate).format("YYMMDD")}-${patientCount}`,
@@ -95,7 +97,7 @@ const createNewPatient = async (req, res) => {
             lastname: toTitleCase(lname),
             address,
             birthDate,
-            age: displayAge(birth, moment()),
+            age: currentAge,
             phoneNumber,
             records: rec,
             remarks,
@@ -154,6 +156,30 @@ const updatePatient = async (req, res) => {
         cloudImg = '';
     }
 
+    // Calculating Age
+    const displayAge = (birth, target) => {
+        let months = target.diff(birth, 'months', true)
+        let birthSpan = {year: Math.floor(months/12), month: Math.floor(months)%12, day: Math.round((months%1)*target.daysInMonth(),0)}
+        // you can adjust below logic as your requirements by yourself
+        if (birthSpan.year < 1 && birthSpan.month < 1) {
+          return birthSpan.day + ' day' + (birthSpan.day > 1 ? 's' : '')
+        } else if (birthSpan.year < 1) {
+          return birthSpan.month + ' month' + (birthSpan.month > 1 ? 's ' : ' ') + birthSpan.day + ' day' + (birthSpan.day > 1 ? 's' : '')
+        } else if (birthSpan.year < 2) {
+          return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's ' : ' ') + birthSpan.month + ' month' + (birthSpan.month > 1 ? 's ' : '')
+        } else {
+          return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's' : '')
+        }
+    }
+
+    const day = moment(birthDate).format('DD')
+    const month = moment(birthDate).format('MM')
+    const year = moment(birthDate).format('YYYY')
+    // moment([yyyy, mm, dd])
+    let birth = moment([year, month, day])
+
+    const currentAge = displayAge(birth, moment())
+
     if (fname ||
         lname ||
         birthDate ||
@@ -166,6 +192,7 @@ const updatePatient = async (req, res) => {
         patient.lastname = toTitleCase(lname);
         patient.address = address;
         patient.birthDate = birthDate;
+        patient.age = currentAge;
         patient.phoneNumber = phoneNumber;
         patient.photo = cloudImg;
         patient.rec = rec;

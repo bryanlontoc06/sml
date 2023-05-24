@@ -28,6 +28,7 @@ const createNewEmployee = async (req, res) => {
         jobTitle,
         dateHired,
         birthDate,
+        age,
         phoneNumber,
         status,
         image} = req?.body
@@ -68,6 +69,31 @@ const createNewEmployee = async (req, res) => {
         cloudImg = '';
     }
 
+    // Calculating Age
+    const displayAge = (birth, target) => {
+        let months = target.diff(birth, 'months', true)
+        let birthSpan = {year: Math.floor(months/12), month: Math.floor(months)%12, day: Math.round((months%1)*target.daysInMonth(),0)}
+        // you can adjust below logic as your requirements by yourself
+        if (birthSpan.year < 18 || birthSpan.year > 50) return res.status(400).json({ "message": "Age must be between 18 to 50yrs old. "})
+        if (birthSpan.year < 1 && birthSpan.month < 1) {
+          return birthSpan.day + ' day' + (birthSpan.day > 1 ? 's' : '')
+        } else if (birthSpan.year < 1) {
+          return birthSpan.month + ' month' + (birthSpan.month > 1 ? 's ' : ' ') + birthSpan.day + ' day' + (birthSpan.day > 1 ? 's' : '')
+        } else if (birthSpan.year < 2) {
+          return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's ' : ' ') + birthSpan.month + ' month' + (birthSpan.month > 1 ? 's ' : '')
+        } else {
+          return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's' : '')
+        }
+    }
+
+    const day = moment(birthDate).format('DD')
+    const month = moment(birthDate).format('MM')
+    const year = moment(birthDate).format('YYYY')
+    // moment([yyyy, mm, dd])
+    let birth = moment([year, month, day])
+
+    const currentAge = displayAge(birth, moment())
+
     try {
         const result = await Employee.create({
             employeeID: `${moment(birthDate).format("YYMMDD")}-${employeeCount}`,
@@ -76,6 +102,7 @@ const createNewEmployee = async (req, res) => {
             jobTitle: toTitleCase(jobTitle),
             dateHired,
             birthDate,
+            age: currentAge,
             phoneNumber,
             status: statusID._id,
             image: cloudImg
@@ -136,6 +163,31 @@ const updateEmployee = async (req, res) => {
         cloudImg = '';
     }
 
+    // Calculating Age
+    const displayAge = (birth, target) => {
+        let months = target.diff(birth, 'months', true)
+        let birthSpan = {year: Math.floor(months/12), month: Math.floor(months)%12, day: Math.round((months%1)*target.daysInMonth(),0)}
+        // you can adjust below logic as your requirements by yourself
+        if (birthSpan.year < 18 || birthSpan.year > 50) return res.status(400).json({ "message": "Age must be between 18 to 50yrs old. "})
+        if (birthSpan.year < 1 && birthSpan.month < 1) {
+          return birthSpan.day + ' day' + (birthSpan.day > 1 ? 's' : '')
+        } else if (birthSpan.year < 1) {
+          return birthSpan.month + ' month' + (birthSpan.month > 1 ? 's ' : ' ') + birthSpan.day + ' day' + (birthSpan.day > 1 ? 's' : '')
+        } else if (birthSpan.year < 2) {
+          return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's ' : ' ') + birthSpan.month + ' month' + (birthSpan.month > 1 ? 's ' : '')
+        } else {
+          return birthSpan.year + ' year' + (birthSpan.year > 1 ? 's' : '')
+        }
+    }
+
+    const day = moment(birthDate).format('DD')
+    const month = moment(birthDate).format('MM')
+    const year = moment(birthDate).format('YYYY')
+    // moment([yyyy, mm, dd])
+    let birth = moment([year, month, day])
+
+    const currentAge = displayAge(birth, moment())
+
     if (fname ||
         lname ||
         jobTitle ||
@@ -149,6 +201,7 @@ const updateEmployee = async (req, res) => {
         employee.jobTitle = toTitleCase(jobTitle);
         employee.dateHired = dateHired;
         employee.birthDate = birthDate;
+        employee.age = currentAge;
         employee.phoneNumber = phoneNumber;
         employee.image = cloudImg;
     };

@@ -29,7 +29,7 @@ const patientSchema = new Schema({
         type: String
     },
     age: {
-        type: Number
+        type: String
     },
     records: [{
         type: mongoose.Schema.Types.ObjectId,

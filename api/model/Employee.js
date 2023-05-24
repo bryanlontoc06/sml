@@ -25,6 +25,9 @@ const employeeSchema = new Schema({
         type: Date,
         required: true
     },
+    age: {
+        type: String
+    },
     phoneNumber: {
         type: String
     },
