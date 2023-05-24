@@ -56,7 +56,7 @@ Representing Patients
 - address: String
 - phoneNumber: String
 - photo (optional): String
-- age: Number
+- age: String
 - records: this will be populated by LabTests Model: ObjectId (LabTests)
 - remarks: String
 
@@ -77,6 +77,7 @@ Representing Promos
 - startDate: Date
 - endDate: Date
 - discountPrice: Number
+- discountPercentage: Number
 
 
 ## API Endpoints:
