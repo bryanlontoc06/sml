@@ -44,6 +44,7 @@ app.use('/patient', require('./routes/api/patient'));
 app.use(verifyRoles(ROLES_LIST.Admin));
 app.use('/status', require('./routes/api/status'));
 app.use('/lab-test', require('./routes/api/labtest'));
+app.use('/promo', require('./routes/api/promo'));
 
 app.use(errorHandler);
 
