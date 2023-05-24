@@ -77,6 +77,7 @@ Representing Promos
 - startDate: Date
 - endDate: Date
 - discountPrice: Number
+- discountPercentage: Number
 
 
 ## API Endpoints:
