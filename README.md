@@ -119,7 +119,7 @@ Using Github:
 Using Docker:
 To copy the Docker Image
 - go to [Docker Repo Link](https://hub.docker.com/r/bryanlontoc/medicallaboratoryapi)
-- on the "Overview" tab, click the copy on the Docker Puller Command `docker pull bryanlontoc/medicallaboratoryapi`
+- on the "Tags" tab, find the latest Docker Image then click the copy on the Docker Puller Command `docker pull bryanlontoc/medicallaboratoryapi`
 - go to the api folder of the github repository project
 - paste the command then hit Enter
 
