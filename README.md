@@ -111,6 +111,7 @@ Using Github:
 - go you desired 'Projects' Folder
 - go to [Github Link](https://github.com/bryanlontoc06/sml)
 - click 'code' then copy the command on the https tab.. https://...
+
 ![image](https://github.com/bryanlontoc06/sml/assets/85468571/76cf8a81-d936-4ec5-ae23-1d5059f60646)
 - open command prompt / terminal, on the directory of your project, type `git clone [paste here the command]`, then  hit Enter.
 
