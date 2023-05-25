@@ -3,6 +3,10 @@
 #### with User Roles and User Registration
 - Employee and Lab Test Procedures - w/ Price Lists & Patient Lab Test History
 
+#### 🔗 Links
+[Github Link](https://github.com/bryanlontoc06/sml)
+[Docker Link](https://hub.docker.com/r/bryanlontoc/medicallaboratoryapi)
+
 Stacks Used:
 - Nodejs
 - Docker
@@ -102,3 +106,23 @@ Representing Promos
 #### Promo
 - /lab-test (Get, Post, Put, Delete)
 - /lab-test/:id (Get)
+
+Using Github:
+- go you desired 'Projects' Folder
+- go to [Github Link](https://github.com/bryanlontoc06/sml)
+- click 'code' then copy the command on the https tab.. https://...
+![image](https://github.com/bryanlontoc06/sml/assets/85468571/76cf8a81-d936-4ec5-ae23-1d5059f60646)
+- open command prompt / terminal, on the directory of your project, type `git clone [paste here the command]`, then  hit Enter.
+
+
+Using Docker:
+To copy the Docker Image
+- go to [Docker Repo Link](https://hub.docker.com/r/bryanlontoc/medicallaboratoryapi)
+- on the "Overview" tab, click the copy on the Docker Puller Command `docker pull bryanlontoc/medicallaboratoryapi`
+- go to the api folder of the github repository project
+- paste the command then hit Enter
+
+- type `docker images` to show docker images
+
+To run image on a container
+- at the api folder, type `docker run -d -p 3500:3500 --name api_c bryanlontoc/medicallaboratoryapi`
