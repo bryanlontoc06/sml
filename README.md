@@ -107,6 +107,8 @@ Representing Promos
 - /lab-test (Get, Post, Put, Delete)
 - /lab-test/:id (Get)
 
+#### Instructions
+
 Using Github:
 - go to your desired 'Projects' Folder
 - go to [Github Link](https://github.com/bryanlontoc06/sml)
@@ -114,6 +116,17 @@ Using Github:
 
 ![image](https://github.com/bryanlontoc06/sml/assets/85468571/76cf8a81-d936-4ec5-ae23-1d5059f60646)
 - open command prompt / terminal, on the directory of your project, type `git clone [paste here the command]`, then  hit Enter.
+- make a .env folder on the root folder
+- create an access token secret and refresh token secret env variable as shown below
+
+- ![image](https://github.com/bryanlontoc06/sml/assets/85468571/6c6bbb83-71d3-4b12-ba41-8e6de8cae205)
+
+For Cloudinary:
+- create an account
+- copy your Cloud Name, API Key and the API Secret as shown above
+
+![image](https://github.com/bryanlontoc06/sml/assets/85468571/7129388d-6584-4b54-b9e7-ff5b110e38b3)
+
 
 
 Using Docker:
