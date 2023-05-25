@@ -108,7 +108,7 @@ Representing Promos
 - /lab-test/:id (Get)
 
 Using Github:
-- go you desired 'Projects' Folder
+- go to your desired 'Projects' Folder
 - go to [Github Link](https://github.com/bryanlontoc06/sml)
 - click 'code' then copy the command on the https tab.. https://...
 
@@ -117,6 +117,7 @@ Using Github:
 
 
 Using Docker:
+
 To copy the Docker Image
 - go to [Docker Repo Link](https://hub.docker.com/r/bryanlontoc/medicallaboratoryapi)
 - on the "Tags" tab, find the latest Docker Image then click the copy on the Docker Puller Command `docker pull bryanlontoc/medicallaboratoryapi`
