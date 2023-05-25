@@ -3,10 +3,6 @@
 #### with User Roles and User Registration
 - Employee and Lab Test Procedures - w/ Price Lists & Patient Lab Test History
 
-NOTE: PROJECT IN PROGRESS (planning to 
-improve this project into a medical laboratory clinic use, by adding laboratory tests with price lists, patients record with lab test procedures and its prices.
-
-
 Stacks Used:
 - Nodejs
 - Docker
