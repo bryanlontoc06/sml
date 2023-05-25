@@ -4,11 +4,16 @@ const toTitleCase = require('../config/toTitleCase');
 const getAllStatus = async (req, res) => {
     //  Sample
     //  http://localhost:3500/status?page=1&limit=2
+    const options = {
+        lean:     true,
+        populate : ({ path: 'addedBy', select: 'username roles' })
+    };
+
     if (req.query.page && req.query.limit) {
-        const result = await Status.paginate({}, { page: req.query.page, limit: req.query.limit });
+        const result = await Status.paginate({}, options, { page: req.query.page, limit: req.query.limit });
         res.status(200).json(result);
     } else {
-        const status = await Status.find();
+        const status = await Status.find().populate('addedBy', 'username roles');;
         if (!status) return res.status(204).json({ 'message': 'No status found' });
         res.status(200).json(status);
     }
@@ -24,7 +29,8 @@ const createNewStatus = async (req, res) => {
 
     try {
         const result = await Status.create({
-            name: toTitleCase(req.body.name)
+            name: toTitleCase(req.body.name),
+            addedBy: req.id,
         });
 
         res.status(201).json(result);

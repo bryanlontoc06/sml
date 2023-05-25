@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const updateProfileMiddleware = (req, res, next) => {
+const profileMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization;
     if (!authHeader?.startsWith('Bearer ')) return res.sendStatus(401);
     const token = authHeader.split(' ')[1];
@@ -17,7 +17,7 @@ const updateProfileMiddleware = (req, res, next) => {
     );
 
     // Check if the user is authorized to update the profile
-    if (req.id !== req.params.id) {
+    if (req.params.id && (req.id !== req.params.id)) {
       return res.status(403).json({ "message": 'Forbidden' });
     }
 
@@ -25,4 +25,4 @@ const updateProfileMiddleware = (req, res, next) => {
     next();
 };
 
-module.exports = updateProfileMiddleware;
+module.exports = profileMiddleware;

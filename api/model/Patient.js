@@ -35,6 +35,10 @@ const patientSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'LabTest',
     }],
+    addedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
     remarks: {
         type: String
     }

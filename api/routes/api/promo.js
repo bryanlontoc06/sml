@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const promoController = require('../../controllers/promoController');
+const profileMiddleware = require('../../middleware/profileMiddleware');
 
 router.route('/')
     .get(promoController.getAllPromo)
-    .post(promoController.createNewPromo)
+    .post(profileMiddleware, promoController.createNewPromo)
     .put(promoController.updatePromo)
     .delete(promoController.deletePromo);
 

@@ -26,7 +26,11 @@ const labtestSchema = new Schema({
     },
     discountPercentage: {
         type: Number
-    }
+    },
+    addedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
 }, { timestamps: true });
 
 labtestSchema.plugin(mongoosePaginate)

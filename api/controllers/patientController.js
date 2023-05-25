@@ -9,14 +9,15 @@ const getAllPatient = async(req, res) => {
     //  http://localhost:3500/patient?page=1&limit=2
     const options = {
         lean:     true,
-        populate : 'records'
+        populate : 'records',
+        populate : ({ path: 'addedBy', select: 'username roles' })
     };
 
     if (req.query.page && req.query.limit) {
         const result = await Patient.paginate({}, options, { page: req.query.page, limit: req.query.limit });
         res.status(200).json(result);
     } else {
-        const patient = await Patient.find().populate('records');
+        const patient = await Patient.find().populate('records').populate('addedBy', 'username roles');
         if (!patient) return res.status(204).json({ 'message': 'No patient found' });
         res.status(200).json(patient);
     }
@@ -100,6 +101,7 @@ const createNewPatient = async (req, res) => {
             age: currentAge,
             phoneNumber,
             records: rec,
+            addedBy: req.id,
             remarks,
             photo: cloudImg
         });

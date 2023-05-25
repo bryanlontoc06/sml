@@ -4,11 +4,16 @@ const toTitleCase = require('../config/toTitleCase');
 const getAllLabTest = async(req, res) => {
     //  Sample
     //  http://localhost:3500/lab-test?page=1&limit=2
+    const options = {
+        lean:     true,
+        populate : ({ path: 'addedBy', select: 'username roles' })
+    };
+
     if (req.query.page && req.query.limit) {
-        const result = await LabTest.paginate({}, { page: req.query.page, limit: req.query.limit });
+        const result = await LabTest.paginate({}, options, { page: req.query.page, limit: req.query.limit });
         res.status(200).json(result);
     } else {
-        const labtest = await LabTest.find();
+        const labtest = await LabTest.find().populate('addedBy', 'username roles');
         if (!labtest) return res.status(204).json({ 'message': 'No laboratory test found' });
         res.status(200).json(labtest);
     }
@@ -30,7 +35,8 @@ const createNewLabTest = async (req, res) => {
             price: req.body.price,
             discountedPrice: req.body.discountedPrice,
             prevPrice: req.body.prevPrice,
-            discountPercentage: req.body.discountPercentage
+            discountPercentage: req.body.discountPercentage,
+            addedBy: req.id,
         });
 
         res.status(201).json(result);

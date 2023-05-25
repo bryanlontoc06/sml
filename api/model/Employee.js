@@ -38,7 +38,11 @@ const employeeSchema = new Schema({
     },
     image: {
         type: String
-    }
+    },
+    addedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
 }, { timestamps: true });
 
 employeeSchema.plugin(mongoosePaginate)

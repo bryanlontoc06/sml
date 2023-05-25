@@ -4,11 +4,16 @@ const toTitleCase = require('../config/toTitleCase');
 const getAllPromo = async (req, res) => {
     //  Sample
     //  http://localhost:3500/promo?page=1&limit=2
+    const options = {
+        lean:     true,
+        populate : ({ path: 'addedBy', select: 'username roles' })
+    };
+
     if (req.query.page && req.query.limit) {
-        const result = await Promo.paginate({}, { page: req.query.page, limit: req.query.limit });
+        const result = await Promo.paginate({}, options, { page: req.query.page, limit: req.query.limit });
         res.status(200).json(result);
     } else {
-        const promo = await Promo.find();
+        const promo = await Promo.find().populate('addedBy', 'username roles');
         if (!promo) return res.status(204).json({ 'message': 'No promo found' });
         res.status(200).json(promo);
     }
@@ -34,7 +39,8 @@ const createNewPromo = async (req, res) => {
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             discountedPrice: req.body.discountedPrice,
-            discountPercentage: req.body.discountPercentage
+            discountPercentage: req.body.discountPercentage,
+            addedBy: req.id,
         });
 
         res.status(201).json(result);

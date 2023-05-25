@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('../../controllers/usersController');
-const updateProfileMiddleware = require('../../middleware/updateProfileMiddleware');
+const profileMiddleware = require('../../middleware/profileMiddleware');
 const ROLES_LIST = require('../../config/roles_list');
 const verifyRoles = require('../../middleware/verifyRoles');
 
@@ -12,6 +12,6 @@ router.route('/')
 
 router.route('/:id')
     .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.User), usersController.getUser)
-    .put(updateProfileMiddleware, usersController.updateUser);
+    .put(profileMiddleware, usersController.updateUser);
 
 module.exports = router;

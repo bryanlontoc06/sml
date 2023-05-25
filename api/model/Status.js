@@ -7,7 +7,11 @@ const statusSchema = new Schema({
     name: {
         type: String,
         required: true
-    }
+    },
+    addedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
 }, { timestamps: true });
 
 statusSchema.plugin(mongoosePaginate)
