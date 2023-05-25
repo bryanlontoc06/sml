@@ -87,10 +87,22 @@ Representing Promos
 - /refresh
 - /logout
 
-#### Needs Access
+### Needs Auth
+#### Users
 - /users (Get, Put, Delete)
 - /users/:id (Get)
-- /employee (Get, Put, Delete)
+#### Employee
+- /employee (Get, Post, Put, Delete)
 - /employee/:id (Get)
-- /status (Get, Put, Delete)
+#### Status
+- /status (Get, Post, Put, Delete)
 - /status/:id (Get)
+#### Patient
+- /patient (Get, Post, Put, Delete)
+- /patient/:id (Get)
+#### Laboratory Test
+- /lab-test (Get, Post, Put, Delete)
+- /lab-test/:id (Get)
+#### Promo
+- /lab-test (Get, Post, Put, Delete)
+- /lab-test/:id (Get)
